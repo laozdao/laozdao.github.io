@@ -1,0 +1,211 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const researchAreas = [
+  {
+    icon: '🏛️',
+    title: '双引擎四层融合模型',
+    desc: '基本面多因子(60%) + 量价关系(25%) + 风险控制(15%)，系统化量化评分与投资评级体系',
+    tags: ['多因子模型', '融合算法', '动态权重'],
+  },
+  {
+    icon: '📈',
+    title: 'ETF资金流向分析',
+    desc: '基于ETF资金流向判断股市趋势，宽基ETF、行业ETF、跨境ETF多维度结构化分析',
+    tags: ['ETF趋势', '资金流向', '市场情绪'],
+  },
+  {
+    icon: '🎯',
+    title: '涨停股归因分析',
+    desc: '基于开源大模型的A股涨停股系统化归因分析，驱动因素识别与可持续性判断',
+    tags: ['涨停归因', '事件驱动', '龙虎榜'],
+  },
+  {
+    icon: '📋',
+    title: '行业板块量化分析',
+    desc: '申万31个行业板块综合评估，涵盖估值、盈利、资金面、技术面多维分析',
+    tags: ['行业轮动', '板块强弱', '估值比较'],
+  },
+  {
+    icon: '📜',
+    title: '道德经与投资智慧',
+    desc: '将《道德经》八十一章的核心思想与量化投资实践深度融合，以道御术',
+    tags: ['东方哲学', '投资心理', '交易纪律'],
+  },
+  {
+    icon: '🔬',
+    title: '芯鉴九维投资分析模型',
+    desc: '针对电子行业细分赛道的九维度深度分析框架，从产业链到公司竞争力全覆盖',
+    tags: ['电子行业', '九维模型', '产业链分析'],
+  },
+];
+---
+
+<MainLayout title="研究体系" description="老子道的量化投资研究体系 - 双引擎四层融合模型、ETF趋势研判、行业分析">
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">研究体系</h1>
+      <p class="page-desc">"致虚极，守静笃。万物并作，吾以观复。" —— 以系统化框架洞察市场</p>
+    </div>
+  </section>
+
+  <section class="research-content">
+    <div class="container">
+      <div class="research-grid">
+        {researchAreas.map(area => (
+          <div class="research-card card">
+            <div class="research-icon">{area.icon}</div>
+            <h3 class="research-title">{area.title}</h3>
+            <p class="research-desc">{area.desc}</p>
+            <div class="research-tags">
+              {area.tags.map(tag => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 道德经交易智慧 -->
+  <section class="dao-wisdom">
+    <div class="container">
+      <h2 class="section-title">道德经 × 交易智慧</h2>
+      <p class="section-subtitle">以道御术，以术证道 —— 东方哲学在量化投资中的实践</p>
+      <div class="wisdom-grid">
+        <div class="wisdom-card card">
+          <h4>道可道，非常道</h4>
+          <p>市场规律可被认知但不可穷尽，保持敬畏与谦逊</p>
+          <span class="wisdom-chapter">第一章 · 市场规律</span>
+        </div>
+        <div class="wisdom-card card">
+          <h4>上善若水</h4>
+          <p>顺势而为，如水般灵活适应市场变化</p>
+          <span class="wisdom-chapter">第八章 · 顺势交易</span>
+        </div>
+        <div class="wisdom-card card">
+          <h4>致虚极，守静笃</h4>
+          <p>保持空杯心态，客观观察市场，避免情绪干扰</p>
+          <span class="wisdom-chapter">第十六章 · 市场观察</span>
+        </div>
+        <div class="wisdom-card card">
+          <h4>知足不辱，知止不殆</h4>
+          <p>设定止盈止损，懂得适可而止</p>
+          <span class="wisdom-chapter">第四十四章 · 风险管理</span>
+        </div>
+        <div class="wisdom-card card">
+          <h4>反者道之动</h4>
+          <p>物极必反，均值回归是市场的基本规律</p>
+          <span class="wisdom-chapter">第四十章 · 均值回归</span>
+        </div>
+        <div class="wisdom-card card">
+          <h4>大器晚成</h4>
+          <p>坚持长期投资，复利是最强大的力量</p>
+          <span class="wisdom-chapter">第四十一章 · 长期投资</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-header {
+    padding: 3rem 0 2rem;
+    text-align: center;
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-desc {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+
+  .research-content {
+    padding: 2rem 0 3rem;
+  }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .research-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .research-icon {
+    font-size: 2rem;
+  }
+
+  .research-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .research-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .research-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+  }
+
+  /* Dao Wisdom */
+  .dao-wisdom {
+    padding: 3rem 0;
+  }
+
+  .wisdom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .wisdom-card {
+    padding: 1.5rem;
+  }
+
+  .wisdom-card h4 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--color-gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .wisdom-card p {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+  }
+
+  .wisdom-chapter {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 640px) {
+    .research-grid,
+    .wisdom-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
