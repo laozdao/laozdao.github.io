@@ -1,0 +1,173 @@
+---
+export interface Repo {
+  name: string;
+  full_name: string;
+  description: string | null;
+  html_url: string;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  topics: string[];
+  updated_at: string;
+}
+
+export interface Props {
+  repos: Repo[];
+  title?: string;
+}
+
+const { repos, title = '开源项目' } = Astro.props;
+
+const langColors: Record<string, string> = {
+  Python: '#3572A5',
+  JavaScript: '#f1e05a',
+  TypeScript: '#3178C6',
+  HTML: '#e34c26',
+  CSS: '#563d7c',
+  Shell: '#89e051',
+  'Jupyter Notebook': '#DA5B0B',
+};
+
+function timeAgo(dateStr: string): string {
+  const now = new Date();
+  const date = new Date(dateStr);
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  if (diffDays === 0) return '今天';
+  if (diffDays === 1) return '昨天';
+  if (diffDays < 30) return `${diffDays}天前`;
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)}个月前`;
+  return `${Math.floor(diffDays / 365)}年前`;
+}
+---
+
+<section class="projects-section">
+  <div class="container">
+    <h2 class="section-title">{title}</h2>
+    <p class="section-subtitle">道生一，一生二，二生三，三生万物 —— 每个项目都是一次探索</p>
+
+    <div class="projects-grid">
+      {repos.map(repo => (
+        <a href={repo.html_url} target="_blank" rel="noopener" class="project-card card">
+          <div class="project-header">
+            <svg class="repo-icon" width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8.5V1.5zm-8 9a1 1 0 100 2 1 1 0 000-2z"/>
+            </svg>
+            <h3 class="project-name">{repo.name}</h3>
+          </div>
+
+          <p class="project-desc">{repo.description}</p>
+
+          <div class="project-meta">
+            {repo.language && (
+              <span class="lang-badge">
+                <span class="lang-dot" style={`background: ${langColors[repo.language] || '#8b8b8b'}`}></span>
+                {repo.language}
+              </span>
+            )}
+            {repo.stargazers_count > 0 && (
+              <span class="meta-item">⭐ {repo.stargazers_count}</span>
+            )}
+            {repo.forks_count > 0 && (
+              <span class="meta-item">🔀 {repo.forks_count}</span>
+            )}
+            <span class="meta-item meta-time">{timeAgo(repo.updated_at)}</span>
+          </div>
+
+          {repo.topics.length > 0 && (
+            <div class="project-tags">
+              {repo.topics.slice(0, 5).map(topic => (
+                <span class="tag">{topic}</span>
+              ))}
+            </div>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .repo-icon {
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+
+  .project-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    flex-wrap: wrap;
+  }
+
+  .lang-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .lang-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .meta-time {
+    margin-left: auto;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
