@@ -1,0 +1,237 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import GitHubStats from '../components/GitHubStats.astro';
+
+const res = await fetch('https://api.github.com/users/laozdao');
+const user = await res.json();
+---
+
+<MainLayout title="关于" description="关于老子道 - 探索东方哲学与量化投资的融合之道">
+  <section class="about-hero">
+    <div class="container about-inner">
+      <div class="about-avatar">
+        <img src={user.avatar_url} alt="laozdao" width="120" height="120" />
+      </div>
+      <div class="about-info">
+        <h1 class="about-name">{user.name} <span class="about-handle">@laozdao</span></h1>
+        <p class="about-bio">{user.bio}</p>
+        <div class="about-meta">
+          <span>📍 公开仓库: {user.public_repos}</span>
+          <span>👥 关注者: {user.followers}</span>
+          <span>📅 加入于 {new Date(user.created_at).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long' })}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 哲学理念 -->
+  <section class="philosophy">
+    <div class="container">
+      <h2 class="section-title">投资哲学</h2>
+      <p class="section-subtitle">以《道德经》为思想内核，构建独特的量化投资体系</p>
+
+      <div class="philosophy-content">
+        <div class="philo-block">
+          <h3>☯ 以道御术</h3>
+          <p>
+            道是规律，术是方法。投资首先要理解市场运行的底层规律（道），
+            然后用科学的方法（术）去践行。不盲目追求技术指标，
+            而是在深刻理解市场本质的基础上，构建量化分析框架。
+          </p>
+        </div>
+
+        <div class="philo-block">
+          <h3>⚖️ 双引擎融合</h3>
+          <p>
+            基本面分析是"体"，量价分析是"用"，风险控制是"防"。
+            三者融合，如同阴阳相济，方能稳健前行。
+            双引擎四层融合模型将基本面多因子(60%)、量价关系(25%)、
+            风险控制(15%)有机统一。
+          </p>
+        </div>
+
+        <div class="philo-block">
+          <h3>🌊 上善若水</h3>
+          <p>
+            水善利万物而不争。投资亦应顺势而为，不与市场对抗。
+            趋势跟踪如同水之就下，自然流畅；
+            仓位管理如同水的深浅，因地制宜。
+          </p>
+        </div>
+
+        <div class="philo-block">
+          <h3>🔄 反者道之动</h3>
+          <p>
+            物极必反是市场的基本规律。当所有人贪婪时保持警惕，
+            当所有人恐惧时寻找机会。量化模型的价值在于
+            克服人性弱点，客观识别市场拐点。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub Stats -->
+  <section class="about-stats">
+    <div class="container">
+      <h2 class="section-title">开源贡献</h2>
+      <p class="section-subtitle">代码是最好的语言，开源是最好的分享</p>
+      <GitHubStats username="laozdao" />
+    </div>
+  </section>
+
+  <!-- 联系方式 -->
+  <section class="contact">
+    <div class="container">
+      <h2 class="section-title">联系我</h2>
+      <p class="section-subtitle">欢迎交流量化投资、东方哲学、开源协作</p>
+      <div class="contact-links">
+        <a href="https://github.com/laozdao" target="_blank" rel="noopener" class="contact-card card">
+          <span class="contact-icon">
+            <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          </span>
+          <div>
+            <h4>GitHub</h4>
+            <p>github.com/laozdao</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .about-hero {
+    padding: 3rem 0 2rem;
+  }
+
+  .about-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .about-avatar img {
+    border-radius: 50%;
+    border: 3px solid var(--color-gold);
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.2);
+  }
+
+  .about-name {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .about-handle {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+  }
+
+  .about-bio {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+  }
+
+  .about-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    flex-wrap: wrap;
+  }
+
+  /* Philosophy */
+  .philosophy {
+    padding: 3rem 0;
+  }
+
+  .philosophy-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .philo-block {
+    padding: 1.5rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+  }
+
+  .philo-block:hover {
+    border-color: var(--color-border-light);
+  }
+
+  .philo-block h3 {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--color-gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .philo-block p {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+  }
+
+  /* Stats */
+  .about-stats {
+    padding: 3rem 0;
+  }
+
+  /* Contact */
+  .contact {
+    padding: 3rem 0;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    min-width: 260px;
+  }
+
+  .contact-icon {
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+  }
+
+  .contact-card h4 {
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .contact-card p {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .about-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .about-meta {
+      justify-content: center;
+    }
+    .philosophy-content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
