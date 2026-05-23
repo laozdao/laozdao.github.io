@@ -1,0 +1,45 @@
+---
+export interface Props {
+  username: string;
+}
+
+const { username } = Astro.props;
+---
+
+<div class="github-stats">
+  <div class="stats-card">
+    <img
+      src={`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a0a0f&title_color=d4a574&icon_color=d4a574&text_color=e8e6e3`}
+      alt="GitHub Stats"
+      loading="lazy"
+    />
+  </div>
+  <div class="stats-card">
+    <img
+      src={`https://github-readme-streak-stats.herokuapp.com?user=${username}&theme=tokyonight&hide_border=true&background=0a0a0f&stroke=d4a574&ring=d4a574&fire=c0392b&currStreakLabel=d4a574`}
+      alt="GitHub Streak"
+      loading="lazy"
+    />
+  </div>
+  <div class="stats-card">
+    <img
+      src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=tokyonight&hide_border=true&bg_color=0a0a0f&title_color=d4a574&text_color=e8e6e3`}
+      alt="Top Languages"
+      loading="lazy"
+    />
+  </div>
+</div>
+
+<style>
+  .github-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .stats-card img {
+    border-radius: var(--radius-md);
+    max-width: 100%;
+  }
+</style>
