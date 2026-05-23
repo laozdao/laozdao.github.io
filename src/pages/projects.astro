@@ -1,0 +1,120 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+
+const res = await fetch('https://api.github.com/users/laozdao/repos?sort=updated&per_page=30');
+const allRepos = await res.json();
+const projects = allRepos.filter((r: any) => r.name !== 'laozdao');
+---
+
+<MainLayout title="开源项目" description="老子道的开源项目 - A股量化分析、ETF趋势研判、涨停归因分析工具">
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">开源项目</h1>
+      <p class="page-desc">以代码践行投资哲学，以开源推动量化普惠</p>
+    </div>
+  </section>
+
+  <ProjectGrid repos={projects} title="全部项目" />
+
+  <!-- 技术栈 -->
+  <section class="tech-section">
+    <div class="container">
+      <h2 class="section-title">技术栈</h2>
+      <p class="section-subtitle">工欲善其事，必先利其器</p>
+      <div class="tech-grid">
+        <div class="tech-item">
+          <span class="tech-icon">🐍</span>
+          <span class="tech-name">Python</span>
+          <span class="tech-desc">量化分析核心语言</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-icon">📊</span>
+          <span class="tech-name">Pandas</span>
+          <span class="tech-desc">数据处理与分析</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-icon">🤖</span>
+          <span class="tech-name">LLM / AI</span>
+          <span class="tech-desc">大模型驱动分析</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-icon">⚡</span>
+          <span class="tech-name">SOLO Skill</span>
+          <span class="tech-desc">AI Agent 技能框架</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-icon">🌐</span>
+          <span class="tech-name">GitHub Actions</span>
+          <span class="tech-desc">CI/CD 自动化</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-icon">💾</span>
+          <span class="tech-name">SQLite</span>
+          <span class="tech-desc">本地数据存储</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-header {
+    padding: 3rem 0 2rem;
+    text-align: center;
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-desc {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+  }
+
+  .tech-section {
+    padding: 3rem 0;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 1.2rem 0.8rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-align: center;
+    transition: all var(--transition-normal);
+  }
+
+  .tech-item:hover {
+    border-color: var(--color-border-light);
+    transform: translateY(-2px);
+  }
+
+  .tech-icon {
+    font-size: 1.8rem;
+  }
+
+  .tech-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .tech-desc {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+</style>
