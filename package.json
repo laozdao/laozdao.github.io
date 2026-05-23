@@ -1,0 +1,16 @@
+{
+  "name": "laozdao-github-site",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "老子道 - 融合东方哲学与量化投资 | GitHub个人网站",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.5.0"
+  }
+}
