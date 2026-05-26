@@ -1,101 +1,83 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import GitHubStats from '../components/GitHubStats.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
-
-// 从 GitHub API 获取仓库数据
+// 浠?GitHub API 鑾峰彇浠撳簱鏁版嵁
 const res = await fetch('https://api.github.com/users/laozdao/repos?sort=updated&per_page=30');
 const allRepos = await res.json();
-// 过滤掉 profile 仓库，只显示实际项目
+// 杩囨护鎺?profile 浠撳簱锛屽彧鏄剧ず瀹為檯椤圭洰
 const projects = allRepos.filter((r: any) => r.name !== 'laozdao').slice(0, 6);
 ---
-
-<MainLayout title="首页" description="老子道 - 探索东方哲学与量化投资的融合之道 | A股量化分析 · ETF趋势研判 · 涨停归因 · 道德经智慧">
-  <!-- Hero 区域 -->
+<MainLayout title="棣栭〉" description="鑰佸瓙閬?- 鎺㈢储涓滄柟鍝插涓庨噺鍖栨姇璧勭殑铻嶅悎涔嬮亾 | A鑲￠噺鍖栧垎鏋?路 ETF瓒嬪娍鐮斿垽 路 娑ㄥ仠褰掑洜 路 閬撳痉缁忔櫤鎱?>
+  <!-- Hero 鍖哄煙 -->
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-content">
-        <div class="hero-badge">☯ 东方哲学 × 量化投资</div>
+        <div class="hero-badge">鈽?涓滄柟鍝插 脳 閲忓寲鎶曡祫</div>
         <h1 class="hero-title">
-          <span class="title-line">道法自然</span>
-          <span class="title-line title-accent">量化有道</span>
+          <span class="title-line">閬撴硶鑷劧</span>
+          <span class="title-line title-accent">閲忓寲鏈夐亾</span>
         </h1>
         <p class="hero-desc">
-          探索东方哲学与量化投资的融合之道。以《道德经》的智慧为内核，
-          构建A股量化分析体系 —— 基本面多因子、量价关系、风险控制三位一体。
-        </p>
+          鎺㈢储涓滄柟鍝插涓庨噺鍖栨姇璧勭殑铻嶅悎涔嬮亾銆備互銆婇亾寰风粡銆嬬殑鏅烘収涓哄唴鏍革紝
+          鏋勫缓A鑲￠噺鍖栧垎鏋愪綋绯?鈥斺€?鍩烘湰闈㈠鍥犲瓙銆侀噺浠峰叧绯汇€侀闄╂帶鍒朵笁浣嶄竴浣撱€?        </p>
         <div class="hero-actions">
           <a href="/projects" class="btn btn-primary">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8.5V1.5zm-8 9a1 1 0 100 2 1 1 0 000-2z"/></svg>
-            查看项目
+            鏌ョ湅椤圭洰
           </a>
           <a href="https://github.com/laozdao" target="_blank" rel="noopener" class="btn btn-outline">
-            GitHub ↗
-          </a>
+            GitHub 鈫?          </a>
         </div>
       </div>
       <div class="hero-visual">
-        <div class="dao-symbol">道</div>
+        <div class="dao-symbol">閬?/div>
         <div class="orbit-ring ring-1"></div>
         <div class="orbit-ring ring-2"></div>
         <div class="orbit-ring ring-3"></div>
       </div>
     </div>
   </section>
-
-  <!-- 核心能力 -->
+  <!-- 鏍稿績鑳藉姏 -->
   <section class="capabilities">
     <div class="container">
-      <h2 class="section-title">核心能力</h2>
-      <p class="section-subtitle">双引擎四层融合模型 —— 基本面60% + 量价25% + 风控15%</p>
+      <h2 class="section-title">鏍稿績鑳藉姏</h2>
+      <p class="section-subtitle">鍙屽紩鎿庡洓灞傝瀺鍚堟ā鍨?鈥斺€?鍩烘湰闈?0% + 閲忎环25% + 椋庢帶15%</p>
       <div class="cap-grid">
         <div class="cap-card card">
-          <div class="cap-icon">📊</div>
-          <h3>A股量化分析</h3>
-          <p>双引擎四层融合模型，涵盖基本面多因子、量价关系、风险控制，输出专业级投资评级</p>
+          <div class="cap-icon">馃搳</div>
+          <h3>A鑲￠噺鍖栧垎鏋?/h3>
+          <p>鍙屽紩鎿庡洓灞傝瀺鍚堟ā鍨嬶紝娑电洊鍩烘湰闈㈠鍥犲瓙銆侀噺浠峰叧绯汇€侀闄╂帶鍒讹紝杈撳嚭涓撲笟绾ф姇璧勮瘎绾?/p>
         </div>
         <div class="cap-card card">
-          <div class="cap-icon">📈</div>
-          <h3>ETF趋势研判</h3>
-          <p>基于ETF资金流向判断股市趋势，宽基ETF、行业ETF、跨境ETF多维度分析</p>
+          <div class="cap-icon">馃搱</div>
+          <h3>ETF瓒嬪娍鐮斿垽</h3>
+          <p>鍩轰簬ETF璧勯噾娴佸悜鍒ゆ柇鑲″競瓒嬪娍锛屽鍩篍TF銆佽涓欵TF銆佽法澧僂TF澶氱淮搴﹀垎鏋?/p>
         </div>
         <div class="cap-card card">
-          <div class="cap-icon">🎯</div>
-          <h3>涨停归因分析</h3>
-          <p>基于开源大模型的涨停股系统化归因分析，驱动因素识别与可持续性判断</p>
+          <div class="cap-icon">馃幆</div>
+          <h3>娑ㄥ仠褰掑洜鍒嗘瀽</h3>
+          <p>鍩轰簬寮€婧愬ぇ妯″瀷鐨勬定鍋滆偂绯荤粺鍖栧綊鍥犲垎鏋愶紝椹卞姩鍥犵礌璇嗗埆涓庡彲鎸佺画鎬у垽鏂?/p>
         </div>
         <div class="cap-card card">
-          <div class="cap-icon">📜</div>
-          <h3>道德经智慧</h3>
-          <p>将东方哲学经典智慧融入投资体系，以道御术、以术证道</p>
+          <div class="cap-icon">馃摐</div>
+          <h3>閬撳痉缁忔櫤鎱?/h3>
+          <p>灏嗕笢鏂瑰摬瀛︾粡鍏告櫤鎱ц瀺鍏ユ姇璧勪綋绯伙紝浠ラ亾寰℃湳銆佷互鏈瘉閬?/p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- GitHub 统计 -->
-  <section class="stats-section">
-    <div class="container">
-      <h2 class="section-title">GitHub 数据</h2>
-      <p class="section-subtitle">代码是最好的语言，数据是最诚实的记录</p>
-      <GitHubStats username="laozdao" />
-    </div>
-  </section>
-
-  <!-- 项目展示 -->
+  <!-- 椤圭洰灞曠ず -->
   <ProjectGrid repos={projects} />
-
-  <!-- 道德经名言 -->
+  <!-- 閬撳痉缁忓悕瑷€ -->
   <section class="wisdom-section">
     <div class="container">
       <blockquote class="wisdom-quote">
-        <p class="quote-text">"知人者智，自知者明。胜人者有力，自胜者强。"</p>
-        <footer class="quote-source">——《道德经》第三十三章</footer>
+        <p class="quote-text">"鐭ヤ汉鑰呮櫤锛岃嚜鐭ヨ€呮槑銆傝儨浜鸿€呮湁鍔涳紝鑷儨鑰呭己銆?</p>
+        <footer class="quote-source">鈥斺€斻€婇亾寰风粡銆嬬涓夊崄涓夌珷</footer>
       </blockquote>
     </div>
   </section>
 </MainLayout>
-
 <style>
   /* Hero */
   .hero {
@@ -103,7 +85,6 @@ const projects = allRepos.filter((r: any) => r.name !== 'laozdao').slice(0, 6);
     position: relative;
     overflow: hidden;
   }
-
   .hero::before {
     content: '';
     position: absolute;
@@ -114,19 +95,16 @@ const projects = allRepos.filter((r: any) => r.name !== 'laozdao').slice(0, 6);
     background: radial-gradient(circle, rgba(192, 57, 43, 0.08) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .hero-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 3rem;
   }
-
   .hero-content {
     flex: 1;
     max-width: 560px;
   }
-
   .hero-badge {
     display: inline-block;
     padding: 0.3rem 0.8rem;
@@ -137,7 +115,6 @@ const projects = allRepos.filter((r: any) => r.name !== 'laozdao').slice(0, 6);
     border-radius: 9999px;
     margin-bottom: 1.5rem;
   }
-
   .hero-title {
     font-family: var(--font-serif);
     font-size: 3rem;
@@ -145,31 +122,26 @@ const projects = allRepos.filter((r: any) => r.name !== 'laozdao').slice(0, 6);
     line-height: 1.2;
     margin-bottom: 1.2rem;
   }
-
   .title-line {
     display: block;
   }
-
   .title-accent {
     background: linear-gradient(135deg, var(--color-accent), var(--color-gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .hero-desc {
     font-size: 1.05rem;
     color: var(--color-text-secondary);
     line-height: 1.8;
     margin-bottom: 2rem;
   }
-
   .hero-actions {
     display: flex;
     gap: 0.8rem;
     flex-wrap: wrap;
   }
-
   /* Hero Visual */
   .hero-visual {
     position: relative;
@@ -180,7 +152,6 @@ const projects = allRepos.filter((r: any) => r.name !== 'laozdao').slice(0, 6);
     align-items: center;
     justify-content: center;
   }
-
   .dao-symbol {
     font-family: var(--font-serif);
     font-size: 5rem;
@@ -188,20 +159,17 @@ const projects = allRepos.filter((r: any) => r.name !== 'laozdao').slice(0, 6);
     z-index: 2;
     text-shadow: 0 0 40px rgba(212, 165, 116, 0.3);
   }
-
   .orbit-ring {
     position: absolute;
     border: 1px solid rgba(212, 165, 116, 0.15);
     border-radius: 50%;
     animation: rotate 20s linear infinite;
   }
-
   .ring-1 {
     width: 200px;
     height: 200px;
     animation-duration: 20s;
   }
-
   .ring-2 {
     width: 260px;
     height: 260px;
@@ -209,70 +177,54 @@ const projects = allRepos.filter((r: any) => r.name !== 'laozdao').slice(0, 6);
     animation-direction: reverse;
     border-style: dashed;
   }
-
   .ring-3 {
     width: 320px;
     height: 320px;
     animation-duration: 40s;
     opacity: 0.5;
   }
-
   @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-
   /* Capabilities */
   .capabilities {
     padding: 4rem 0;
   }
-
   .cap-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 1rem;
   }
-
   .cap-card {
     text-align: center;
     padding: 2rem 1.5rem;
   }
-
   .cap-icon {
     font-size: 2.2rem;
     margin-bottom: 0.8rem;
   }
-
   .cap-card h3 {
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: var(--color-text);
   }
-
   .cap-card p {
     font-size: 0.82rem;
     color: var(--color-text-secondary);
     line-height: 1.6;
   }
-
-  /* Stats */
-  .stats-section {
-    padding: 3rem 0;
-  }
-
   /* Wisdom */
   .wisdom-section {
     padding: 4rem 0;
   }
-
   .wisdom-quote {
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
     padding: 2rem;
   }
-
   .quote-text {
     font-family: var(--font-serif);
     font-size: 1.4rem;
@@ -280,13 +232,11 @@ const projects = allRepos.filter((r: any) => r.name !== 'laozdao').slice(0, 6);
     line-height: 1.8;
     font-style: italic;
   }
-
   .quote-source {
     margin-top: 1rem;
     font-size: 0.9rem;
     color: var(--color-text-muted);
   }
-
   @media (max-width: 768px) {
     .hero-inner {
       flex-direction: column;
